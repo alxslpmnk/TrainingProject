@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrainingProject.Data.Models
+namespace TrainingProject.Domain.Logic.Models
 {
-    public class UserType
+    public class UserTypeDTO
     {
         public Guid id_userType { get; set; }
         public string Name { get; set; }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrainingProject.Domain.Logic.Models
-{
-    public class PerformerReviewDTO
+namespace TrainingProject.Domain.Logic.Managers 
+{ 
+    public class PerformerReviewManager
     {
         public Guid id_review { get; set; }
         public Guid id_performer { get; set; }

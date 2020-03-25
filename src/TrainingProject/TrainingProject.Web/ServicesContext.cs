@@ -21,26 +21,10 @@ namespace TrainingProject.Web
         public DbSet<Status> Statuses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>()
-                .HasKey(x => x.Id);
-            modelBuilder.Entity<Product>()
-                .Property(x => x.Id)
-                .ValueGeneratedOnAdd();
-            modelBuilder.Entity<Product>()
-                .Property(x => x.SaleFrom)
-                .HasConversion(x => x, x => x.HasValue ? DateTime.SpecifyKind(x.Value, DateTimeKind.Utc) : x);
-            modelBuilder.Entity<Product>()
-                .HasQueryFilter(x => !x.IsDeleted);
-            modelBuilder.Entity<Product>()
-                .HasMany(x => x.Reviews)
-                .WithOne()
-                .HasForeignKey(x => x.ProductId);
-
-            modelBuilder.Entity<ProductReview>()
-                .HasKey(x => x.Id);
-            modelBuilder.Entity<ProductReview>()
-                .Property(x => x.Id)
-                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<User>()
+                .HasKey(x => x.id_user);
+            modelBuilder.Entity<User>().Property(x => x.id_user).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Performer>().HasMany(x => x.Reviews).WithOne().HasForeignKey(x => x.id_review);
         }
     }
   

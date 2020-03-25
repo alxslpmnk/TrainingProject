@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrainingProject.Data.Models
+namespace TrainingProject.Domain.Logic.Models
 {
-    public class Status
+    public class StatusDTO
     {
         public Guid id_status { get; set; }
         public string Name { get; set; }
