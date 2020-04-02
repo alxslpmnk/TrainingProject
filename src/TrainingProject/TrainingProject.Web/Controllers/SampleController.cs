@@ -5,18 +5,20 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Domain.Logic.Interfaces;
+using TrainingProject.Domain.Logic.Managers;
+using TrainingProject.Domain.Logic.Models;
 
 namespace TrainingProject.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/sample")]
     public class SampleController : ControllerBase
     {
-        private readonly IUserTypeManager _userTypeManager;
+        private readonly IOrderManager _ordertManager;
 
-        public SampleController(IUserTypeManager userTypeManager)
+        public SampleController(IOrderManager orderManager)
         {
-            _userTypeManager = userTypeManager;
+            _ordertManager = orderManager;
         }
 
         [HttpGet]
@@ -26,8 +28,45 @@ namespace TrainingProject.Web.Controllers
             [FromQuery] int? toIndex = default,
             CancellationToken cancellationToken = default)
         {
-            var result = await _userTypeManager.GetUserTypesAsync(cancellationToken);
+            var result = await _ordertManager.GetOrdersAsync(search, fromIndex, toIndex, cancellationToken);
             return Ok(result);
+        }
+
+        [HttpGet("{productId}")]
+        public async Task<IActionResult> GetAsync(
+            Guid productId,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _ordertManager.GetOrderAsync(productId, cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpPost()]
+        public async Task<IActionResult> CreateAsync(
+            OrderDTO product,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _ordertManager.CreateOrderAsync(product, cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpPut()]
+        public async Task<IActionResult> UpdateAsync(
+            OrderDTO product,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _ordertManager.UpdateOrderAsync(product, cancellationToken);
+            return Ok(result);
+        }
+
+        [HttpDelete("{productId}")]
+        public async Task<IActionResult> DeleteAsync(
+            Guid productId,
+            [FromQuery] bool force = false,
+            CancellationToken cancellationToken = default)
+        {
+            await _ordertManager.DeleteOrderAsync(productId, force, cancellationToken);
+            return Ok();
         }
     }
 }

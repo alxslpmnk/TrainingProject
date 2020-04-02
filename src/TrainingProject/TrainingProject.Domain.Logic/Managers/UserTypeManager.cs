@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TrainingProject.Data;
+using TrainingProject.Domain.Logic.Interfaces;
 using TrainingProject.Domain.Logic.Models;
 
 namespace TrainingProject.Domain.Logic.Managers
 {
-    public class UserTypeManager
+    public class UserTypeManager : IUserTypeManager
     {
         private readonly IServicesContext _servicesContext;
         private readonly IMapper _mapper;

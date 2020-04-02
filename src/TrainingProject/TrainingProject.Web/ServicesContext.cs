@@ -25,6 +25,15 @@ namespace TrainingProject.Web
                 .HasKey(x => x.id_user);
             modelBuilder.Entity<User>().Property(x => x.id_user).ValueGeneratedOnAdd();
             modelBuilder.Entity<Performer>().HasMany(x => x.Reviews).WithOne().HasForeignKey(x => x.id_review);
+            modelBuilder.Entity<Order>().HasKey(x => x.id_order);
+            modelBuilder.Entity<Order>().Property(x => x.id_order).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Order>().HasOne<Categories>().WithMany().HasForeignKey(c => c.id_category);
+            modelBuilder.Entity<Order>().HasOne<User>().WithMany().HasForeignKey(c => c.id_user);
+            modelBuilder.Entity<Categories>().HasKey(x => x.id_category);
+            modelBuilder.Entity<PerformerReview>().HasKey(x => x.id_review);
+            modelBuilder.Entity<Status>().HasKey(x => x.id_status);
+            modelBuilder.Entity<UserType>().HasKey(x => x.id_userType);
+            modelBuilder.Entity<Performer>().HasKey(x => x.id_perf);
         }
     }
   

@@ -9,7 +9,6 @@ namespace TrainingProject.Domain.Logic.Interfaces
 {
     public interface IUserTypeManager
     {
-
         Task<UserTypeDTO> GetUserTypesAsync(CancellationToken cancellationToken = default);
     }
 }
