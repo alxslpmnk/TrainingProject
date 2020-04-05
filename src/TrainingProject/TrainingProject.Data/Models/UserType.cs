@@ -6,7 +6,7 @@ namespace TrainingProject.Data.Models
 {
     public class UserType
     {
-        public Guid id_userType { get; set; }
+        public int id_userType { get; set; }
         public string Name { get; set; }
     }
 }

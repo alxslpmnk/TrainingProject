@@ -14,15 +14,18 @@ namespace TrainingProject.Web
             {
                 context.UserTypes.Add(new UserType
                 {
-                  Name="Admin"
+                    Name = "Admin",
+                    id_userType = 1
+                }) ;
+                context.UserTypes.Add(new UserType
+                {
+                    Name = "Orderer",
+                    id_userType = 2
                 });
                 context.UserTypes.Add(new UserType
                 {
-                    Name = "Orderer"
-                });
-                context.UserTypes.Add(new UserType
-                {
-                    Name = "Performer"
+                    Name = "Performer",
+                    id_userType=3
                 });
                 context.SaveChanges();
             }
