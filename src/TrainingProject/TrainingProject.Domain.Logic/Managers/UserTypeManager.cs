@@ -13,9 +13,9 @@ namespace TrainingProject.Domain.Logic.Managers
 {
     public class UserTypeManager : IUserTypeManager
     {
-        private readonly IServicesContext _servicesContext;
+        private readonly IAppContext _servicesContext;
         private readonly IMapper _mapper;
-        public UserTypeManager(IServicesContext servicesContext, IMapper mapper)
+        public UserTypeManager(IAppContext servicesContext, IMapper mapper)
         {
             _servicesContext = servicesContext;
             _mapper = mapper;

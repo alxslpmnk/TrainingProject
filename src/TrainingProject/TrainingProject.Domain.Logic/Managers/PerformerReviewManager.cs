@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TrainingProject.Domain.Logic.Interfaces;
 
 namespace TrainingProject.Domain.Logic.Managers 
 { 
-    public class PerformerReviewManager
+    public class PerformerReviewManager : IPerformerReviewManager
     {
-        public Guid id_review { get; set; }
-        public Guid id_performer { get; set; }
-        public int rating { get; set; }
-        public string comment { get; set; }
+
     }
 }

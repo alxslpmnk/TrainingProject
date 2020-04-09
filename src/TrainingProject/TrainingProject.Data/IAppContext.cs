@@ -8,7 +8,7 @@ using TrainingProject.Data.Models;
 
 namespace TrainingProject.Data
 {
-    public interface IServicesContext
+    public interface IAppContext
     {
         DbSet<User> Users { get; set; }
         DbSet<UserType> UserTypes { get; set; }

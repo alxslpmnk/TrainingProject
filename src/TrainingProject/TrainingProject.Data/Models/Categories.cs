@@ -6,7 +6,7 @@ namespace TrainingProject.Data.Models
 {
     public class Categories
     {
-        public Guid id_category { get; set; }
+        public Guid IdCategory { get; set; }
         public string Name { get; set; }
     }
 }

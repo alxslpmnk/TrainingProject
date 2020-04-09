@@ -15,65 +15,62 @@ namespace TrainingProject.Domain.Logic.Managers
 {
     public class OrderManager : IOrderManager
     {
-        private readonly IServicesContext _servicesContext;
+        private readonly IAppContext _servicesContext;
         private readonly IMapper _mapper;
-        public OrderManager(IServicesContext servicesContext, IMapper mapper)
+        public OrderManager(IAppContext servicesContext, IMapper mapper)
         {
             _servicesContext = servicesContext;
             _mapper = mapper;
         }
-        public async Task<OrderDTO> CreateOrderAsync(OrderDTO order, CancellationToken cancellationToken = default)
+        public async Task<Order> CreateOrderAsync(Order order, CancellationToken cancellationToken = default)
         {
-            var add = _mapper.Map<Order>(order);
-            _servicesContext.Orders.Add(add);
+            var newOrder = _mapper.Map<Order>(order);
+            _servicesContext.Orders.Add(newOrder);
             await _servicesContext.SaveChangesAsync(cancellationToken);
-            return _mapper.Map<OrderDTO>(add);
+            return _mapper.Map<Order>(newOrder);
         }
 
-        public async Task DeleteOrderAsync(Guid order_id, bool force, CancellationToken cancellationToken = default)
+        public async Task DeleteOrderAsync(Guid order_id, CancellationToken cancellationToken = default)
         {
-            var order = await _servicesContext.Orders.IgnoreQueryFilters().FirstOrDefaultAsync(x => x.id_order == order_id, cancellationToken);
+            var order = await _servicesContext.Orders.IgnoreQueryFilters().FirstOrDefaultAsync(x => x.IdOrder == order_id, cancellationToken);
             if (order != null)
-            {
-                if (force)
-                {
-                    _servicesContext.Orders.Remove(order);
-                }
+            {           
+                _servicesContext.Orders.Remove(order);
                 await _servicesContext.SaveChangesAsync(cancellationToken);
             }
         }
 
-        public async Task<OrderDTO> GetOrderAsync(Guid order_id, CancellationToken cancellationToken = default)
+        public async Task<Order> GetOrderAsync(Guid order_id, CancellationToken cancellationToken = default)
         {
-            var order = await _servicesContext.Orders.FirstOrDefaultAsync(x => x.id_order == order_id, cancellationToken);
-            return _mapper.Map<OrderDTO>(order);
+            var order = await _servicesContext.Orders.FirstOrDefaultAsync(x => x.IdOrder == order_id, cancellationToken);
+            return _mapper.Map<Order>(order);
         }
 
-        public async Task<OrderDTO[]> GetOrdersAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
+        public async Task<Order[]> GetOrdersAsync(string search, int? fromIndex = null, int? toIndex = null, CancellationToken cancellationToken = default)
         {
             var query = _servicesContext.Orders.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 query = query.Where(x =>
-                    x.title.ToLower().Contains(search.ToLower()) ||
+                    x.Title.ToLower().Contains(search.ToLower()) ||
                     x.Description.ToLower().Contains(search.ToLower()));
             }
             if (fromIndex.HasValue)
             {
                 query = query.Skip(fromIndex.Value);
             }
-            query = query.OrderBy(x => x.title);
+            query = query.OrderBy(x => x.Title);
             var total = await query.CountAsync(cancellationToken);
             if (fromIndex.HasValue && toIndex.HasValue)
             {
                 query = query.Skip(fromIndex.Value).Take(toIndex.Value - fromIndex.Value + 1);
             }
 
-            return await _mapper.ProjectTo<OrderDTO>(query).ToArrayAsync(cancellationToken);
+            return await _mapper.ProjectTo<Order>(query).ToArrayAsync(cancellationToken);
             
         }
 
-        public Task<OrderDTO> UpdateOrderAsync(OrderDTO product, CancellationToken cancellationToken = default)
+        public Task<Order> UpdateOrderAsync(Order order, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

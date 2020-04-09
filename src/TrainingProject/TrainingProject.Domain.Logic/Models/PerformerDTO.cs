@@ -6,8 +6,8 @@ namespace TrainingProject.Domain.Logic.Models
 {
     public class PerformerDTO
     {
-        public Guid id_perf { get; set; }
-        public Guid id_user { get; set; }
-        public string description { get; set; }
+        public Guid IdPerformer { get; set; }
+        public Guid IdUser { get; set; }
+        public string Description { get; set; }
     }
 }

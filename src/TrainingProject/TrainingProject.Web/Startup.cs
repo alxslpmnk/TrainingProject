@@ -36,7 +36,7 @@ namespace TrainingProject.Web
 
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup).Assembly);
-            services.AddDbContext<IServicesContext,ServicesContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ServicesContext")));
+            services.AddDbContext<IAppContext,AppContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ServicesContext")));
             services.AddScoped<IOrderManager, OrderManager>();
             services.AddSwaggerGen(c =>
             {

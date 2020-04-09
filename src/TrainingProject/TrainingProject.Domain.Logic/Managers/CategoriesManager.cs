@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TrainingProject.Domain.Logic.Interfaces;
 
 namespace TrainingProject.Domain.Logic.Managers
 {
-    public class CategoriesManager
+    public class CategoriesManager : ICategoriesManager
     {
-        public Guid id_category { get; set; }
-        public string Name { get; set; }
+
     }
 }

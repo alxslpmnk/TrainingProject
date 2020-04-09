@@ -20,7 +20,7 @@ namespace TrainingProject.Web
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
         private List<User> _users = new List<User>
         {
-            new User { Name = "ttt", Login = "ttt", Password = "ppp", id_userType = 1 }
+            new User { Name = "ttt", Login = "ttt", Password = "ppp", IdUserType = 1 }
         };
 
         private readonly AppSettings _appSettings;
@@ -45,15 +45,15 @@ namespace TrainingProject.Web
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.id_user.ToString())
+                    new Claim(ClaimTypes.Name, user.IdUser.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.token = tokenHandler.WriteToken(token);
+            user.Token = tokenHandler.WriteToken(token);
 
-            return user.WithoutPassword();
+            return user.GetUserInfo();
         }
     }
 }

@@ -27,9 +27,9 @@ namespace TrainingProject.Web
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = (ServicesContext)services.GetRequiredService<IServicesContext>();
+                    var context = (AppContext)services.GetRequiredService<IAppContext>();
                     context.Database.EnsureCreated();
-                    ServicesContextInit.Init(context);
+                    AppContextInit.Init(context);
                 }
                 catch (Exception ex)
                 {

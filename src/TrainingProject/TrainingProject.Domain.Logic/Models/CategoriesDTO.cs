@@ -6,7 +6,7 @@ namespace TrainingProject.Domain.Logic.Models
 {
     public class CategoriesDTO
     {
-        public Guid id_category { get; set; }
+        public Guid IdCategory { get; set; }
         public string Name { get; set; }
     }
 }

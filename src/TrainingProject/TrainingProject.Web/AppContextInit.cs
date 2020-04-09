@@ -6,26 +6,34 @@ using TrainingProject.Data.Models;
 
 namespace TrainingProject.Web
 {
-    public class ServicesContextInit
+    public class AppContextInit
     {
-        public static void Init(ServicesContext context)
+        enum UserTypes
+        {
+            Admin = 1,
+            Orderer,
+            Performer
+        }
+            
+        
+        public static void Init(AppContext context)
         {
             if (!context.Orders.Any())
             {
                 context.UserTypes.Add(new UserType
                 {
                     Name = "Admin",
-                    id_userType = 1
+                    IdUserType = (int)UserTypes.Admin
                 }) ;
                 context.UserTypes.Add(new UserType
                 {
                     Name = "Orderer",
-                    id_userType = 2
+                    IdUserType = (int)UserTypes.Orderer
                 });
                 context.UserTypes.Add(new UserType
                 {
                     Name = "Performer",
-                    id_userType=3
+                    IdUserType = (int)UserTypes.Performer
                 });
                 context.SaveChanges();
             }

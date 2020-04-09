@@ -6,9 +6,9 @@ namespace TrainingProject.Data.Models
 {
     public class PerformerReview
     {
-        public Guid id_review { get; set; }
-        public Guid id_performer { get; set; }
-        public int rating { get; set; }
-        public string comment { get; set; }
+        public Guid IdReview { get; set; }
+        public Guid IdPerformer { get; set; }
+        public int Rating { get; set; }
+        public string Comment { get; set; }
     }
 }

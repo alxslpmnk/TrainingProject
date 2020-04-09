@@ -6,7 +6,7 @@ namespace TrainingProject.Domain.Logic.Models
 {
     public class UserTypeDTO
     {
-        public Guid id_userType { get; set; }
+        public Guid IdUserType { get; set; }
         public string Name { get; set; }
     }
 }

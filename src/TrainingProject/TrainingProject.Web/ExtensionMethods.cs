@@ -6,11 +6,11 @@ namespace TrainingProject.Web
 {
     public static class ExtensionMethods
     {
-        public static IEnumerable<User> WithoutPasswords(this IEnumerable<User> users) {
-            return users.Select(x => x.WithoutPassword());
+        public static IEnumerable<User> GetWithoutPasswords(this IEnumerable<User> users) {
+            return users.Select(x => x.GetUserInfo());
         }
 
-        public static User WithoutPassword(this User user) {
+        public static User GetUserInfo(this User user) {
             user.Password = null;
             return user;
         }
