@@ -18,22 +18,14 @@ namespace TrainingProject.Web
         
         public static void Init(AppContext context)
         {
-            if (!context.Orders.Any())
+            if (!context.Users.Any())
             {
-                context.UserTypes.Add(new UserType
+                context.Users.Add(new User
                 {
-                    Name = "Admin",
-                    IdUserType = (int)UserTypes.Admin
-                }) ;
-                context.UserTypes.Add(new UserType
-                {
-                    Name = "Orderer",
-                    IdUserType = (int)UserTypes.Orderer
-                });
-                context.UserTypes.Add(new UserType
-                {
-                    Name = "Performer",
-                    IdUserType = (int)UserTypes.Performer
+                    Name = "ADmin",
+                    Login = "ttt",
+                    Password = "hhh",
+                    IdUserType = 1
                 });
                 context.SaveChanges();
             }
